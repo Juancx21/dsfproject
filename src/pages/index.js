@@ -1,7 +1,24 @@
 import '../resources/css/form.css';
 import Table from 'react-bootstrap/Table'
+import { useEffect, useState } from 'react';
 
 const App = () => {
+
+    const url = 'http://jsonplaceholder.typicode.com/todos'
+    const [todos, setTodos] = useState()
+    //console.log(todos);
+
+    const fetchApi = async() =>{
+        const response = await fetch(url)
+        const responeJSON = await response.json()
+
+        setTodos(responeJSON)
+    }
+
+    useEffect(() => {
+        fetchApi()
+    }, [])
+
     return(
         <div className="container-lg">
             <div className="table-responsive">
@@ -33,10 +50,33 @@ const App = () => {
                                 <td>962658500</td>
                                 <td>juanmcm2oo1@gmail.com</td>
                                 <td>
-                                    <a className="edit" title="Edit" data-toggle="tooltip"><i className="material-icons">&#xE254;</i></a>
-                                    <a className="delete" title="Delete" data-toggle="tooltip"><i className="material-icons">&#xE872;</i></a>
+                                    <a href="#nothing" className="edit" title="Edit" data-toggle="tooltip">
+                                        <i className="material-icons">&#xE254;</i>
+                                    </a>
+                                    <a href="#nothing" className="delete" title="Delete" data-toggle="tooltip">
+                                        <i className="material-icons">&#xE872;</i>
+                                    </a>
                                 </td>
                             </tr>
+
+                            {
+                                !todos ? 'Cargando...' :
+                                todos.map( (todo)=>{
+                                    return <tr>
+                                        <td> {todo.title} </td>
+                                        <td> {todo.title} </td>
+                                        <td> {todo.title} </td>
+                                        <td> {todo.title} </td>
+                                        <td> {todo.title} </td>
+                                        <a href="#nothing" className="edit" title="Edit" data-toggle="tooltip">
+                                            <i className="material-icons">&#xE254;</i>
+                                        </a>
+                                        <a href="#nothing" className="delete" title="Delete" data-toggle="tooltip">
+                                            <i className="material-icons">&#xE872;</i>
+                                        </a>
+                                    </tr>
+                                } )
+                            }
                                   
                         </tbody>
                     </Table>
@@ -45,5 +85,9 @@ const App = () => {
         </div>
     );
 }
+
+/*
+
+*/
 
 export default App;
