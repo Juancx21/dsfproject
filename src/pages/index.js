@@ -43,39 +43,25 @@ const App = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Juan</td>
-                                <td>Campos</td>
-                                <td>71447248</td>
-                                <td>962658500</td>
-                                <td>juanmcm2oo1@gmail.com</td>
-                                <td>
-                                    <a href="#nothing" className="edit" title="Edit" data-toggle="tooltip">
-                                        <i className="material-icons">&#xE254;</i>
-                                    </a>
-                                    <a href="#nothing" className="delete" title="Delete" data-toggle="tooltip">
-                                        <i className="material-icons">&#xE872;</i>
-                                    </a>
-                                </td>
-                            </tr>
 
                             {
                                 !todos ? 'Cargando...' :
                                 todos.map( (todo)=>{
-                                    return <tr>
+                                    return (<tr key={todo.id}>
                                         <td> {todo.title} </td>
                                         <td> {todo.title} </td>
+                                        <td> {todo.id} </td>
                                         <td> {todo.title} </td>
                                         <td> {todo.title} </td>
-                                        <td> {todo.title} </td>
+                                        <td>
                                         <a href="#nothing" className="edit" title="Edit" data-toggle="tooltip">
                                             <i className="material-icons">&#xE254;</i>
                                         </a>
                                         <a href="#nothing" className="delete" title="Delete" data-toggle="tooltip">
                                             <i className="material-icons">&#xE872;</i>
-                                        </a>
+                                        </a></td>
                                     </tr>
-                                } )
+                                );} )
                             }
                                   
                         </tbody>
